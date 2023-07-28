@@ -1,11 +1,6 @@
 import { Finding, HandleTransaction } from "forta-agent";
 import { checkRelationship } from "./check-relationship";
-import {
-  EXCHANGE_CONTRACT_ADDRESSES,
-  EXCHANGE_TRADE_EVENTS,
-  SEND_FUNCTION_SIGS,
-  TRANSFER_EVENT,
-} from "./constants";
+import { EXCHANGE_CONTRACT_ADDRESSES, EXCHANGE_TRADE_EVENTS, SEND_FUNCTION_SIGS, TRANSFER_EVENT } from "./constants";
 
 const exchangeTrades = Object.values(EXCHANGE_TRADE_EVENTS);
 
@@ -21,9 +16,7 @@ const handleTransaction: HandleTransaction = async (txEvent) => {
   // console.log(`Interacted with (to) address is ${toAddress}`);
 
   // Mitigate FPs of just transferring NFTs
-  if (
-    SEND_FUNCTION_SIGS.some((sig) => txEvent.transaction.data.startsWith(sig))
-  ) {
+  if (SEND_FUNCTION_SIGS.some((sig) => txEvent.transaction.data.startsWith(sig))) {
     return findings;
   }
 
@@ -34,13 +27,10 @@ const handleTransaction: HandleTransaction = async (txEvent) => {
     // transferEvents.length > 0 &&
     // transferEvents.length < 4
     tradeEvents.length === transferEvents.length &&
-    ((transferEvents.length > 0 && transferEvents.length < 5) ||
-      txEvent.transaction.value !== "0x0")
+    ((transferEvents.length > 0 && transferEvents.length < 5) || txEvent.transaction.value !== "0x0")
   ) {
     if (txEvent.to) {
-      const isExchangeAddress = exchanges
-        .map((addr) => addr.toLowerCase())
-        .includes(txEvent.to.toLowerCase());
+      const isExchangeAddress = exchanges.map((addr) => addr.toLowerCase()).includes(txEvent.to.toLowerCase());
       if (isExchangeAddress) {
         console.log(`interacted with (to) ${txEvent.to}`);
         console.log(`number of transfer events ${transferEvents.length}`);

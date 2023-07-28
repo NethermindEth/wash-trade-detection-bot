@@ -1,21 +1,11 @@
-import {
-  Finding,
-  FindingSeverity,
-  FindingType,
-  LogDescription,
-  EntityType,
-  Network,
-} from "forta-agent";
+import { Finding, FindingSeverity, FindingType, LogDescription, EntityType, Network } from "forta-agent";
 import { getBuyer, getSeller, getNftId } from "./utils";
 import { findFirstSender } from "./find-first-sender";
 
 let numberOfTrades: number = 0;
 let numberOfWashTrades: number = 0;
 
-async function checkRelationship(
-  transfer: LogDescription,
-  network: Network
-): Promise<Finding[]> {
+async function checkRelationship(transfer: LogDescription, network: Network): Promise<Finding[]> {
   const results: Finding[] = [];
 
   async function countTrades(): Promise<void> {
@@ -72,9 +62,7 @@ async function checkRelationship(
         anomalyScore: `${numberOfWashTrades / numberOfTrades}`,
       },
     });
-    console.log(
-      `the seller wallet ${seller} was used to fund the buyer wallet ${buyer}`
-    );
+    console.log(`the seller wallet ${seller} was used to fund the buyer wallet ${buyer}`);
     results.push(finding);
   }
 

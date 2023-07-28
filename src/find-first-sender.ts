@@ -9,10 +9,7 @@ import {
 } from "./constants";
 import { Network } from "forta-agent";
 
-async function findFirstSender(
-  buyerAddress: string,
-  network: Network
-): Promise<string | undefined> {
+async function findFirstSender(buyerAddress: string, network: Network): Promise<string | undefined> {
   // const confirmNetwork = Number(network);
   console.log(`confirm network is ${network}`);
 

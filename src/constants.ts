@@ -67,45 +67,23 @@ export const EXCHANGE_TRADE_EVENTS: Record<string, string> = {
     "event ItemBought(address indexed buyer, address indexed seller, address indexed nftAddress, uint256 tokenId, uint256 price)",
 };
 
-export const TRANSFER_EVENT =
-  "event Transfer(address indexed from, address indexed to, uint256 indexed tokenId)";
+export const TRANSFER_EVENT = "event Transfer(address indexed from, address indexed to, uint256 indexed tokenId)";
 
 export const SEND_FUNCTION_SIGS = [
   "0xafd76a0b", // https://snowtrace.io/tx/0x911dedecb669ded0d40b875000bb3d50ed2390909c790d5cb49804475ff7df98
   "0x0e47f8d3", // https://snowtrace.io/tx/0xb77a5ed3ba50ee76c082e4e87b54582cf5ad8618708f9d804a2c043c1a4c5efb
 ];
 
-export const ethProvider = new ethers.providers.EtherscanProvider(
-  "mainnet",
-  keys.ETHERSCAN_API_KEY
-);
+export const ethProvider = new ethers.providers.EtherscanProvider("mainnet", keys.ETHERSCAN_API_KEY);
 
-export const avaxProvider = new CustomProviders(
-  Network.AVALANCHE,
-  keys.SNOWTRACE_API_KEY
-);
+export const avaxProvider = new CustomProviders(Network.AVALANCHE, keys.SNOWTRACE_API_KEY);
 
-export const ftmProvider = new CustomProviders(
-  Network.FANTOM,
-  keys.FTMSCAN_API_KEY
-);
+export const ftmProvider = new CustomProviders(Network.FANTOM, keys.FTMSCAN_API_KEY);
 
-export const optProvider = new ethers.providers.EtherscanProvider(
-  "optimism",
-  keys.OPTIMISM_API_KEY
-);
+export const optProvider = new ethers.providers.EtherscanProvider("optimism", keys.OPTIMISM_API_KEY);
 
-export const mtcProvider = new ethers.providers.EtherscanProvider(
-  "matic",
-  keys.POLYGONSCAN_API_KEY
-);
+export const mtcProvider = new ethers.providers.EtherscanProvider("matic", keys.POLYGONSCAN_API_KEY);
 
-export const bscProvider = new CustomProviders(
-  Network.BSC,
-  keys.BSCSCAN_API_KEY
-);
+export const bscProvider = new CustomProviders(Network.BSC, keys.BSCSCAN_API_KEY);
 
-export const arbProvider = new ethers.providers.EtherscanProvider(
-  "arbitrum",
-  keys.ARBISCAN_API_KEY
-);
+export const arbProvider = new ethers.providers.EtherscanProvider("arbitrum", keys.ARBISCAN_API_KEY);

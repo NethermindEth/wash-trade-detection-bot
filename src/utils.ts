@@ -55,8 +55,7 @@ export function getNftWithOldestSale(): string {
   let tokenId = nftList[0];
 
   nftMap.forEach(function (report, id) {
-    const lastSaleTimestamp =
-      report.salesHistory[report.salesHistory.length - 1].saleAt;
+    const lastSaleTimestamp = report.salesHistory[report.salesHistory.length - 1].saleAt;
     if (lastSaleTimestamp < oldestSaleTimestamp) {
       oldestSaleTimestamp = lastSaleTimestamp;
       tokenId = id;
@@ -87,11 +86,7 @@ export function trackNft(transfer: LogDescription, timestamp: number) {
   }
 }
 
-export function trackNftSale(
-  tokenId: string,
-  transfer: LogDescription,
-  timestamp: number
-) {
+export function trackNftSale(tokenId: string, transfer: LogDescription, timestamp: number) {
   const buyer = getBuyer(transfer);
   const seller = getSeller(transfer);
   const nftReport = nftMap.get(tokenId)!;
