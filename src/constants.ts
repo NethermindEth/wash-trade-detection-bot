@@ -1,5 +1,6 @@
 import { ethers, Network } from "forta-agent";
 import { CustomProviders } from "./custom-providers";
+import keys from "./keys.json";
 
 export const EXCHANGE_CONTRACT_ADDRESSES: Record<string, string> = {
   // Ethereum
@@ -10,6 +11,8 @@ export const EXCHANGE_CONTRACT_ADDRESSES: Record<string, string> = {
   SuperRare: "0x6D7c44773C52D396F43c2D511B81aa168E9a7a42",
   X2Y2: "0x74312363e45DCaBA76c59ec49a7Aa8A65a67EeD3",
   Blur: "0x000000000000ad05ccc4f10045630fb830b95127",
+  BlurMarketplace2: "0x39da41747a83aee658334415666f3ef92dd0d541",
+  BlurMarketplace3: "0xb2ecfe4e4d61f8790bbb9de2d1259b9e2410cea5",
   GhostMarketEth: "0xfB2F452639cBB0850B46b20D24DE7b0a9cCb665f",
   NftMarketplace: "0x3819579b236e5Ab5C695DD4762c2B18bB0Aee1c8", // test (goerli)
 
@@ -67,37 +70,42 @@ export const EXCHANGE_TRADE_EVENTS: Record<string, string> = {
 export const TRANSFER_EVENT =
   "event Transfer(address indexed from, address indexed to, uint256 indexed tokenId)";
 
+export const SEND_FUNCTION_SIGS = [
+  "0xafd76a0b", // https://snowtrace.io/tx/0x911dedecb669ded0d40b875000bb3d50ed2390909c790d5cb49804475ff7df98
+  "0x0e47f8d3", // https://snowtrace.io/tx/0xb77a5ed3ba50ee76c082e4e87b54582cf5ad8618708f9d804a2c043c1a4c5efb
+];
+
 export const ethProvider = new ethers.providers.EtherscanProvider(
   "mainnet",
-  process.env.ETHERSCAN_API_KEY
+  keys.ETHERSCAN_API_KEY
 );
 
 export const avaxProvider = new CustomProviders(
   Network.AVALANCHE,
-  process.env.SNOWTRACE_API_KEY
+  keys.SNOWTRACE_API_KEY
 );
 
 export const ftmProvider = new CustomProviders(
   Network.FANTOM,
-  process.env.FTMSCAN_API_KEY
+  keys.FTMSCAN_API_KEY
 );
 
 export const optProvider = new ethers.providers.EtherscanProvider(
   "optimism",
-  process.env.OTPIMISM_API_KEY
+  keys.OPTIMISM_API_KEY
 );
 
 export const mtcProvider = new ethers.providers.EtherscanProvider(
   "matic",
-  process.env.POLYGONSCAN_API_KEY
+  keys.POLYGONSCAN_API_KEY
 );
 
 export const bscProvider = new CustomProviders(
   Network.BSC,
-  process.env.BSCSCAN_API_KEY
+  keys.BSCSCAN_API_KEY
 );
 
 export const arbProvider = new ethers.providers.EtherscanProvider(
   "arbitrum",
-  process.env.ARBITRUM_API_KEY
+  keys.ARBISCAN_API_KEY
 );
